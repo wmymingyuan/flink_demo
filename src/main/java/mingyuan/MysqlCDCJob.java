@@ -4,6 +4,8 @@ package mingyuan;
 import com.ververica.cdc.connectors.mysql.source.MySqlSource;
 import com.ververica.cdc.debezium.JsonDebeziumDeserializationSchema;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 public class MysqlCDCJob {
@@ -17,8 +19,9 @@ public class MysqlCDCJob {
                 .password("123456")
                 .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
                 .build();
-
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        Configuration configuration=new Configuration();
+        configuration.setString(RestOptions.BIND_PORT,"8081");
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment(configuration);
 
         // enable checkpoint
         env.enableCheckpointing(3000);
