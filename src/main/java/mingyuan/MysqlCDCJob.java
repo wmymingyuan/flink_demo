@@ -14,7 +14,7 @@ public class MysqlCDCJob {
                 .hostname("127.0.0.1")
                 .port(3306)
                 .databaseList("book_db") // set captured database
-                .tableList("book_db.risk_law_enforce_body_info") // set captured table
+                .tableList("^.*$") // set captured table
                 .username("root")
                 .password("123456")
                 .deserializer(new JsonDebeziumDeserializationSchema()) // converts SourceRecord to JSON String
