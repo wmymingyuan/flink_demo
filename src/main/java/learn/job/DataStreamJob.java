@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package mingyuan;
+package learn.job;
 
 
 import org.apache.flink.shaded.guava30.com.google.common.collect.Lists;
